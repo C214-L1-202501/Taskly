@@ -6,7 +6,7 @@ bp = Blueprint("main", __name__)
 def home():
     return render_template("home.html")
 
-@bp.route("/tarefas")
+@bp.route("/task")
 def task():
     return render_template("task.html")
 
