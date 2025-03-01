@@ -17,6 +17,15 @@
     <!-- Jquery -->
     <script src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
 
+    <nav class="navigator">
+        <ul class="nav-menu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('task') }}">Tarefas</a></li>
+            <li><a href="{{ url_for('goal') }}">Metas</a></li>
+            <li><a href="{{ url_for('history') }}">Histórico</a></li>
+        </ul>
+    </nav>
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
