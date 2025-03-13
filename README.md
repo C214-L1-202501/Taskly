@@ -71,3 +71,21 @@ and shows errors based on [PEP8](https://peps.python.org/pep-0008/).
 ```shell
 flake8 .
 ```
+
+### Running Automated Tests
+
+To run the automated tests, you need to be in the root directory of the project.
+
+Run the following command in your terminal:
+
+```shell
+python -m pytest tests
+```
+
+This will execute all the tests located in the `tests/` directory.
+
+Make sure you have `pytest` installed before running the tests. If you don't have it installed, you can install it using:
+
+```shell
+pip install pytest
+```
