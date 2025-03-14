@@ -9,5 +9,12 @@ TEMPLATE_FOLDER = "templates"
 class Config:
     FLASK_DEBUG = 1
     SESSION_TYPE = "filesystem"
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(BASEDIR, 'banco.db')}"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+class ProductionConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "sqlite:///banco.db"
+
+
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"

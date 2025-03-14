@@ -2,24 +2,28 @@ import pytest
 
 from app import create_app
 from app.models import db
+from config import TestingConfig
 
 
 @pytest.fixture
-def client():
-    """Configura um cliente de teste para a API Flask"""
-    app = create_app()
+def app():
+    """Cria uma instância do app configurada para testes"""
+    app = create_app(TestingConfig)
     app.config["TESTING"] = True
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     with app.app_context():
         db.create_all()
-
-    client = app.test_client()
-    yield client
-
-    with app.app_context():
+        yield app
+        db.session.remove()
         db.drop_all()
+
+
+@pytest.fixture
+def client(app):
+    """Configura o cliente de teste do Flask"""
+    return app.test_client()
 
 
 def test_create_task(client):
