@@ -79,7 +79,7 @@ To run the automated tests, you need to be in the root directory of the project.
 Run the following command in your terminal:
 
 ```shell
-python -m pytest tests
+python -m pytest -v tests
 ```
 
 This will execute all the tests located in the `tests/` directory.
