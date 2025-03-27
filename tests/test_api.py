@@ -58,3 +58,86 @@ def test_get_nonexistent_task(client):
     assert response.status_code == 404
     data = response.get_json()
     assert data["message"] == "Tarefa não encontrada."
+
+
+def test_bulk_task_creation(client):
+    """Teste para criar várias tarefas e validar a listagem"""
+    tasks_data = [
+        {"name": "Tarefa 1", "due_date": "2025-03-20", "description": "Descrição 1"},
+        {"name": "Tarefa 2", "due_date": "2025-03-21", "description": "Descrição 2"},
+        {"name": "Tarefa 3", "due_date": "2025-03-22", "description": "Descrição 3"},
+    ]
+
+    for task in tasks_data:
+        response = client.post("/api/tasks", json=task)
+        assert response.status_code == 201
+
+    response = client.get("/api/tasks")
+    assert response.status_code == 200
+    data = response.get_json()
+    assert len(data) == len(tasks_data)
+
+
+def test_get_task(client):
+    """Teste para obter uma tarefa específica"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Testar GET ID",
+            "due_date": "2025-03-20",
+            "description": "Verificar se busca por ID funciona",
+        },
+    )
+
+    response = client.get("/api/tasks/1")
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["name"] == "Testar GET ID"
+
+
+def test_update_task(client):
+    """Teste para atualizar uma tarefa"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Tarefa Antiga",
+            "due_date": "2025-03-20",
+            "description": "Antes da atualização",
+        },
+    )
+
+    response = client.put(
+        "/api/tasks/1",
+        json={"name": "Tarefa Atualizada", "description": "Agora está atualizada"},
+    )
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["message"] == "Tarefa atualizada!"
+
+    response = client.get("/api/tasks/1")
+    data = response.get_json()
+    assert data["name"] == "Tarefa Atualizada"
+    assert data["description"] == "Agora está atualizada"
+
+
+def test_delete_task(client):
+    """Teste para deletar uma tarefa"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Tarefa a Deletar",
+            "due_date": "2025-03-20",
+            "description": "Será excluída",
+        },
+    )
+
+    response = client.delete("/api/tasks/1")
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["message"] == "Tarefa deletada!"
+
+    response = client.get("/api/tasks/1")
+    assert response.status_code == 404
