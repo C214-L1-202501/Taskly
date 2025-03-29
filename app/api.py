@@ -62,9 +62,11 @@ def get_tasks():
 
 @api_bp.route("/tasks/<int:task_id>", methods=["GET"])
 def get_task(task_id):
+
     task = db.session.get(Tasks, task_id)
     if not task:
         return jsonify({"message": "Tarefa não encontrada."}), 404
+
     return jsonify(
         {
             "id": task.id,
@@ -91,6 +93,9 @@ def update_task(task_id):
             return jsonify({"message": "Formato de data inválido. Use YYYY-MM-DD"}), 400
     if "description" in data:
         task.description = data["description"]
+
+    else:
+        return jsonify({"message": "Nenhum campo a ser atualizado."}), 400
 
     db.session.commit()
     return jsonify(
