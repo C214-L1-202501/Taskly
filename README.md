@@ -3,6 +3,11 @@ From inside the IDE, open the terminal in the root of the system and run:
 ```shell
 ./venv/Scripts/activate.ps1
 ```
+Or MacOs/Linux
+```shell
+    python3 -m venv venv                       
+    source ./venv/bin/activate
+```
 
 ## Installing dependencies
 ````shell
