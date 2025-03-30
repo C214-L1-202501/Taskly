@@ -60,6 +60,47 @@ def test_get_nonexistent_task(client):
     assert data["message"] == "Tarefa não encontrada."
 
 
+def test_update_nonexistent_task(client):
+    """Teste para tentar atualizar uma tarefa que não existe"""
+    response = client.put(
+        "/api/tasks/999",
+        json={
+            "name": "Tarefa Atualizada",
+            "description": "Tentando atualizar uma tarefa inexistente",
+        },
+    )
+
+    assert response.status_code == 404
+    data = response.get_json()
+    assert data["message"] == "Tarefa não encontrada."
+
+
+def test_delete_nonexistent_task(client):
+    """Teste para tentar deletar uma tarefa que não existe"""
+    response = client.delete("/api/tasks/999")
+    assert response.status_code == 404
+    data = response.get_json()
+    assert data["message"] == "Tarefa não encontrada."
+
+
+def test_get_tasks(client):
+    """Teste para listar todas as tarefas"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Testar GET",
+            "due_date": "2025-03-20",
+            "description": "Verificar se a listagem funciona",
+        },
+    )
+
+    response = client.get("/api/tasks")
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert len(data) > 0
+
+
 def test_bulk_task_creation(client):
     """Teste para criar várias tarefas e validar a listagem"""
     tasks_data = [
