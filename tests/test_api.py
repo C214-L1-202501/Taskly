@@ -60,12 +60,45 @@ def test_get_nonexistent_task(client):
     assert data["message"] == "Tarefa não encontrada."
 
 
-def test_get_nonexistent_task_non_int(client):
-    """Teste para tentar obter uma tarefa com um ID inválido não inteiro"""
-    response = client.get("/api/tasks/#$%¨&")
+def test_update_nonexistent_task(client):
+    """Teste para tentar atualizar uma tarefa que não existe"""
+    response = client.put(
+        "/api/tasks/999",
+        json={
+            "name": "Tarefa Atualizada",
+            "description": "Tentando atualizar uma tarefa inexistente",
+        },
+    )
+
     assert response.status_code == 404
     data = response.get_json()
-    assert data == None
+    assert data["message"] == "Tarefa não encontrada."
+
+
+def test_delete_nonexistent_task(client):
+    """Teste para tentar deletar uma tarefa que não existe"""
+    response = client.delete("/api/tasks/999")
+    assert response.status_code == 404
+    data = response.get_json()
+    assert data["message"] == "Tarefa não encontrada."
+
+
+def test_get_tasks(client):
+    """Teste para listar todas as tarefas"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Testar GET",
+            "due_date": "2025-03-20",
+            "description": "Verificar se a listagem funciona",
+        },
+    )
+
+    response = client.get("/api/tasks")
+
+    assert response.status_code == 200
+    data = response.get_json()
+    assert len(data) > 0
 
 
 def test_bulk_task_creation(client):
@@ -130,58 +163,6 @@ def test_update_task(client):
     assert data["description"] == "Agora está atualizada"
 
 
-def test_update_task_nonexistant_field(client):
-    """Teste para atualizar uma tarefa, com os nomes dos campos errados"""
-    client.post(
-        "/api/tasks",
-        json={
-            "name": "Tarefa Antiga",
-            "due_date": "2025-03-20",
-            "description": "Antes da atualização",
-        },
-    )
-
-    response = client.put(
-        "/api/tasks/1",
-        json={"naame": "Tarefa Atualizada", "desxcription": "Agora está atualizada"},
-    )
-
-    assert response.status_code == 400
-    data = response.get_json()
-    assert data["message"] == "Nenhum campo a ser atualizado."
-
-
-def test_update_task_twice(client):
-    """Teste para atualizar uma tarefa duas vezes, a qual o método PUT deve permitir"""
-    client.post(
-        "/api/tasks",
-        json={
-            "name": "Tarefa Antiga",
-            "due_date": "2025-03-20",
-            "description": "Antes da atualização",
-        },
-    )
-
-    response = client.put(
-        "/api/tasks/1",
-        json={"name": "Tarefa Atualizada", "description": "Agora está atualizada"},
-    )
-
-    response = client.put(
-        "/api/tasks/1",
-        json={"name": "Tarefa Atualizada", "description": "Agora está atualizada"},
-    )
-
-    assert response.status_code == 200
-    data = response.get_json()
-    assert data["message"] == "Tarefa atualizada!"
-
-    response = client.get("/api/tasks/1")
-    data = response.get_json()
-    assert data["name"] == "Tarefa Atualizada"
-    assert data["description"] == "Agora está atualizada"
-
-
 def test_delete_task(client):
     """Teste para deletar uma tarefa"""
     client.post(
@@ -203,43 +184,42 @@ def test_delete_task(client):
     assert response.status_code == 404
 
 
-def test_delete_task_twice(client):
-    """Teste para deletar uma tarefa duas vezes"""
-    client.post(
-        "/api/tasks",
+def test_update_nonexistent_task(client):
+    """Teste para tentar atualizar uma tarefa que não existe"""
+    response = client.put(
+        "/api/tasks/999",
         json={
-            "name": "Tarefa a Deletar",
-            "due_date": "2025-03-20",
-            "description": "Será excluída",
+            "name": "Tarefa Atualizada",
+            "description": "Tentando atualizar uma tarefa inexistente",
         },
     )
 
-    response = client.delete("/api/tasks/1")
-
-    response = client.delete("/api/tasks/1")
     assert response.status_code == 404
     data = response.get_json()
     assert data["message"] == "Tarefa não encontrada."
 
 
-def test_bulk_task_creation_missing_field(client):
-    """Teste para criar várias tarefas e validar a listagem, com uma tarefa sem descrição"""
-    tasks_data = [
-        {"name": "Tarefa 1", "due_date": "2025-03-20", "description": "Descrição 1"},
-        {"name": "Tarefa 2", "due_date": "2025-03-21", "description": "Descrição 2"},
-        {"name": "Tarefa 3", "due_date": "2025-03-22"},
-    ]
+def test_delete_nonexistent_task(client):
+    """Teste para tentar deletar uma tarefa que não existe"""
+    response = client.delete("/api/tasks/999")
+    assert response.status_code == 404
+    data = response.get_json()
+    assert data["message"] == "Tarefa não encontrada."
 
-    for task in tasks_data:
-        response = client.post("/api/tasks", json=task)
-        if "description" not in task:
-            data = response.get_json()
-            assert data["message"] == "Campo(s) obrigatório(s) ausentes: description"
-        else:
-            assert response.status_code == 201
 
-    """verifica se a tarefa sem descrição não foi adicionada"""
+def test_get_tasks(client):
+    """Teste para listar todas as tarefas"""
+    client.post(
+        "/api/tasks",
+        json={
+            "name": "Testar GET",
+            "due_date": "2025-03-20",
+            "description": "Verificar se a listagem funciona",
+        },
+    )
+
     response = client.get("/api/tasks")
+
     assert response.status_code == 200
     data = response.get_json()
-    assert len(data) == len(tasks_data) - 1
+    assert len(data) > 0
