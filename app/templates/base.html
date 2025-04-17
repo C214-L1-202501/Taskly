@@ -29,15 +29,40 @@
 <body class="base-body">
     <header>
         <nav>
-            <a class="navbar-marca" href="/">
+            <div class="navbar-left-wrap"></div>
+            <a class="navbar-marca" href="/"> <!-- ou talvez logo -->
                 Taskly
             </a>
+
+            <div class="navbar-right-wrap">
+                <a class="navbar-sobre-nos" href="/about">Sobre Nós</a>
+                <a class="navbar-login" href="/login">Login</a>
+                <a class="navbar-download" href="/download">Download</a>
+                <a class="navbar-sair" href="/sair">Sair</a>
+            </div>
+
         </nav>
     </header>
-    {% block carousel%}{%endblock%}
-    <div class="box-wrapper">
-        {% block content %}{% endblock %}
-    </div>
+
+    {% block one%} {%endblock%}
+    {% block two%} {%endblock%}
+    {% block three%} {% endblock %}
+    <footer>
+        <nav>
+            <div class="footer-left-wrap"></div>
+            <a class="footer-marca" href="/"> <!-- ou talvez logo -->
+                Taskly
+            </a>
+
+            <div class="footer-right-wrap">
+                <a class="footer-sobre-nos" href="/about">Sobre Nós</a>
+                <a class="footer-login" href="/login">Login</a>
+                <a class="footer-download" href="/download">Download</a>
+                <a class="footer-sair" href="/sair">Sair</a>
+            </div>
+
+        </nav>
+    </footer>
 </body>
 {% block extra_js %}{% endblock %}
 

@@ -1,29 +1,44 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/CTO.css') }}">
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
 {% endblock %}
-{% block carousel%}
-
-    <section>
-        <input type="radio" name="position" checked />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" />
-        <main id="carousel">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <main>
-    </section>
+{% block one%}
+<div class="CTO box-wrapper">
+    <div class="CTO-left-container">
+        <h1 class="CTO-title">Comece a planejar sua vida e organizar seu dia.</h1>
+        <p class="CTO-description">Faça seu planejamento de forma dinâmica e rápida</p>
+        <button class="CTO-button">Start</button>
+    </div>
+    <div class="CTO-right-container">
+        <img class="CTO-image" src="{{ url_for('static', filename='images/PLACEHOLDER.jpg') }}" alt="Placeholder Image">
+    </div>
+</div>
 {%endblock%}
-{% block content %}
+{% block two%}
 
+<section>
+    <input type="radio" name="position" checked />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <main id="carousel">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <main>
+</section>
+{%endblock%}
+{% block three %}
+<div class="box-wrapper">
     <h1>Home</h1>
     <p>Lorem ipsum dolor sit amet adipiscing idunt nullam.</p>
+</div>
 
 {% endblock %}
 
