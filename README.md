@@ -1,22 +1,27 @@
 ## Activating the virtual environment (venv)
+
 From inside the IDE, open the terminal in the root of the system and run:
+
 ```shell
 ./venv/Scripts/activate.ps1
 ```
+
 Or MacOs/Linux
+
 ```shell
-    python3 -m venv venv                       
+    python3 -m venv venv
     source ./venv/bin/activate
 ```
 
 ## Installing dependencies
-````shell
+
+```shell
 pip install -r requirements.txt
-````
+```
 
 ## Commit Configuration
 
-After to install requirements, you must configure ``pre-commit`` to maintain a code standard of our team.
+After to install requirements, you must configure `pre-commit` to maintain a code standard of our team.
 To do this, you must run the following command:
 
 ```shell
@@ -25,7 +30,7 @@ pre-commit install
 
 This command will configure a routine in a commit process to block a code out of code standard preset.
 
-If you commit blocks by ``pre-commit process``, you need to see the git console in pycharm to be 
+If you commit blocks by `pre-commit process`, you need to see the git console in pycharm to be
 able to adjust the errors accused by linting.
 
 You must run the following commands before commit to avoid block commits:
@@ -58,12 +63,12 @@ black . --check
 # --------------------------------
 isort .
 
-# OR 
+# OR
 
 # this command shows files to reformat imports your self
 isort . --check
 
-# OR 
+# OR
 
 # this command shows files to reformat imports and what you must changed in each file
 isort . --check --diff
@@ -71,8 +76,9 @@ isort . --check --diff
 
 ### Flake8
 
-After running the above commands, run following command, it will check all files on your project 
+After running the above commands, run following command, it will check all files on your project
 and shows errors based on [PEP8](https://peps.python.org/pep-0008/).
+
 ```shell
 flake8 .
 ```
@@ -94,3 +100,7 @@ Make sure you have `pytest` installed before running the tests. If you don't hav
 ```shell
 pip install pytest
 ```
+
+### Running flask server
+
+python main.py run

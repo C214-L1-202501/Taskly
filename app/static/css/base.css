@@ -1,0 +1,17 @@
+.box-wrapper{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    top:50%;
+    left: 50%;
+
+    height: 60vh;
+    width: 60vw;
+
+    border-width: 10px ;
+    border-color: rgb(5, 64, 5);
+    border-style: solid;
+    border-radius: 3vh;
+}
