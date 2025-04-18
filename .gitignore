@@ -376,3 +376,5 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/flask,pycharm,python
 
 tree.txt
+
+.vscode
