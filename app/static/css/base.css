@@ -13,6 +13,8 @@ html, body {
     overflow-x: hidden;
 }
 
+
+
 body {
     background: linear-gradient(to right,var(--background_soft), #ffffff);
     color: var(--lines);
