@@ -1,4 +1,4 @@
-:root{
+:root {
     --background: #AAD57D;
     --background_soft: #96AA80;
     --buttons: #B7FF6C;
@@ -6,11 +6,14 @@
     --background_dark: #49553D;
     --lines: #28331C;
 }
-html,body{
+
+html, body {
     min-height: 100%;
-    margin:0;
+    margin: 0;
+    overflow-x: hidden;
 }
-body{
+
+body {
     background-color: var(--background);
     color: var(--lines);
     display: flex;
@@ -18,34 +21,26 @@ body{
     justify-content: flex-start;
     align-items: center;
 }
-header{
-    position:fixed;
-    min-height: 50px;
-    width: 100%;    
-    top:0px;
-    background-color: black;
-    z-index: 20;
-    
-}
-footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
 
-    
-    position:relative;
-    min-height: 200px;
-    width: 100%;    
-    bottom:auto;
+header {
+    width: 100%;
     background-color: black;
-    z-index: 20;
-    
+
 }
-.box-wrapper{
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: black;
+}
+
+.box-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items:flex-start;
+    align-items: flex-start;
 
     border-radius: 5vh;
     background-color: var(--background_soft);
@@ -54,6 +49,13 @@ footer{
     padding: 3vh 3vw;
     gap: 3vw;
 
+}
+
+nav {
+    padding: 16px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar-left-wrap {
