@@ -1,11 +1,4 @@
-body {
-    background: linear-gradient(to right, #e9fef1, #ffffff);
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-.CTO {
+.CTA {
     width: 85vw;
     height: 65vh;
     margin: 100px auto 0 auto;
@@ -19,27 +12,27 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.CTO-left-container {
+.CTA-left-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.CTO-title {
+.CTA-title {
     font-size: 2.5rem;
     color: #2d3436;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
-.CTO-description {
+.CTA-description {
     font-size: 1.25rem;
     color: #636e72;
     margin-bottom: 2rem;
 }
 
-.CTO-button {
+.CTA-button {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     background-color: #2ecc71;
@@ -51,19 +44,19 @@ body {
     transition: transform 0.2s, background-color 0.3s;
 }
 
-.CTO-button:hover {
+.CTA-button:hover {
     background-color: #27ae60;
     transform: scale(1.05);
 }
 
-.CTO-right-container {
+.CTA-right-container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.CTO-image {
+.CTA-image {
     max-width: 90%;
     height: auto;
     border-radius: 1.5rem;
@@ -71,7 +64,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.CTO-image:hover {
+.CTA-image:hover {
     transform: scale(1.03);
 }
 

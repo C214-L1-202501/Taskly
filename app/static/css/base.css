@@ -1,6 +1,6 @@
 :root {
     --background: #AAD57D;
-    --background_soft: #96AA80;
+    --background_soft: #e9fef1;
     --buttons: #B7FF6C;
     --content: #788070;
     --background_dark: #49553D;
@@ -14,12 +14,15 @@ html, body {
 }
 
 body {
-    background-color: var(--background);
+    background: linear-gradient(to right,var(--background_soft), #ffffff);
     color: var(--lines);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 header {
