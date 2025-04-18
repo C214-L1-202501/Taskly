@@ -1,0 +1,55 @@
+.CTO {
+    width: 85vw;
+    height:65vh;
+    margin: 100px auto 0 auto; /* margem superior para não cobrir o header fixo */
+    align-items: center;
+}
+
+.CTO-left-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.CTO-title {
+    font-size: 2rem;
+    color: var(--lines);
+    margin-bottom: 1rem;
+}
+
+.CTO-description {
+    font-size: 1.2rem;
+    color: var(--lines);
+    margin-bottom: 2rem;
+}
+
+.CTO-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: var(--buttons);
+    color: var(--lines);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.CTO-button:hover {
+    background-color: var(--background_dark);
+    color: white;
+}
+
+.CTO-right-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CTO-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2vh;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
