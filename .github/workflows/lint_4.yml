@@ -1,0 +1,22 @@
+name: Notify committer by email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  email_committer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email to committer
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Push realizado com sucesso"
+          body: "Seu push para o repositório foi concluído com sucesso!"
+          to: ${{ github.event.head_commit.author.email }}
+          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
