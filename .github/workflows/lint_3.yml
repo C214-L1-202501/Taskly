@@ -29,7 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install djlint html5validator linkchecker pa11y requests beautifulsoup4 flask
+        pip install djlint html5validator linkchecker requests beautifulsoup4 flask
 
     - name: Run djlint (HTML/Jinja2 linter)
       run: |
@@ -37,7 +37,7 @@ jobs:
 
     - name: Run html5validator (HTML5 validation)
       run: |
-        html5validator --root templates/ --ignore 'Element “head” is missing a required instance of child element “title”' # Ajuste de regras se necessário
+        html5validator --root templates/ --ignore 'Element “head” is missing a required instance of child element “title”'
 
     - name: Check links in templates
       run: |

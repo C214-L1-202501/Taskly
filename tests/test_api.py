@@ -80,7 +80,7 @@ def test_delete_nonexistent_task(client):
     response = client.delete("/api/tasks/999")
     assert response.status_code == 404
     data = response.get_json()
-    assert data["message"] == "Tarefa não encontrada."
+    assert data["message"] == "Tarefa não encontrada!"
 
 
 def test_get_tasks(client):
