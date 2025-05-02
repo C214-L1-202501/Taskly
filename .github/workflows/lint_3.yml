@@ -33,7 +33,7 @@ jobs:
 
     - name: Run djlint (HTML/Jinja2 linter)
       run: |
-        djlint templates/ --check --extension=html,jinja
+        djlint app/templates/ --check --extension=html,jinja
 
     - name: Run html5validator (HTML5 validation)
       run: |
@@ -41,7 +41,7 @@ jobs:
 
     - name: Check links in templates
       run: |
-        linkchecker templates/
+        linkchecker app/templates/
 
     - name: Static files existence check
       run: python .github/scripts/check_static_files.py

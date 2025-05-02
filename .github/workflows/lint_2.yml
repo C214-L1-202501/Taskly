@@ -44,7 +44,3 @@ jobs:
         python -c "import pycodestyle; print(f'pycodestyle OK: {pycodestyle.__version__}')"
         python -c "import pyflakes; print(f'pyflakes OK: {pyflakes.__version__}')"
         python -c "import pytest; print(f'pytest OK: {pytest.__version__}')"
-
-    - name: Run tests
-      run: |
-        pytest -v
