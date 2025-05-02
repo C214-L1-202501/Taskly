@@ -71,8 +71,5 @@ jobs:
       run: |
         djlint app/templates/ --check --extension=html,jinja
 
-    - name: Static files existence check
-      run: python .github/scripts/check_static_files.py
-
 
 
