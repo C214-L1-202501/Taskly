@@ -1,4 +1,4 @@
-name: lint_2.yml
+name: Lint Requirements
 
 on:
   push:
