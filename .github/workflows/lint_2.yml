@@ -3,44 +3,50 @@ name: Lint Requirements
 on:
   push:
     paths:
-      - '**.py'
+      - "**.py"
   pull_request:
     paths:
-      - '**.py'
+      - "**.py"
 
 jobs:
   install-requirements:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout código
-      uses: actions/checkout@v4
+      - name: Checkout código
+        uses: actions/checkout@v4
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-    - name: Install all dependencies (requirements.txt)
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-        else
-          echo "File requirements.txt not found!"
-        fi
+      - name: Install all dependencies (requirements.txt)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+            python -m pytest --html=pytest_report.html
+          else
+            echo "File requirements.txt not found!"
 
-    - name: Test install
-      run: |
-        pip freeze
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Test-Report-Python"
+          path: pytest_report.html
 
-    - name: Verify install
-      run: |
-        echo "Testing Import and Package Versions"
-        
-        python -c "import black; print(f'black OK: {black.__version__}')"
-        python -c "import flake8; print(f'flake8 OK: {flake8.__version__}')"
-        python -c "import flask; print(f'Flask OK: {flask.__version__}')"
-        python -c "import pycodestyle; print(f'pycodestyle OK: {pycodestyle.__version__}')"
-        python -c "import pyflakes; print(f'pyflakes OK: {pyflakes.__version__}')"
-        python -c "import pytest; print(f'pytest OK: {pytest.__version__}')"
+      - name: Test install
+        run: |
+          pip freeze
+
+      - name: Verify install
+        run: |
+          echo "Testing Import and Package Versions"
+
+          python -c "import black; print(f'black OK: {black.__version__}')"
+          python -c "import flake8; print(f'flake8 OK: {flake8.__version__}')"
+          python -c "import flask; print(f'Flask OK: {flask.__version__}')"
+          python -c "import pycodestyle; print(f'pycodestyle OK: {pycodestyle.__version__}')"
+          python -c "import pyflakes; print(f'pyflakes OK: {pyflakes.__version__}')"
+          python -c "import pytest; print(f'pytest OK: {pytest.__version__}')"
