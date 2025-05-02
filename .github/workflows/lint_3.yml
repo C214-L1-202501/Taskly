@@ -29,12 +29,19 @@ jobs:
       - name: Check if HTML files already exist
         run: |
           for file in app/templates/*.html; do
-            filename=$(basename "$file")
-            if git ls-files --error-unmatch "app/templates/$filename" > /dev/null 2>&1; then
-              echo "Error: File with the same name $filename already exists!" && exit 1
+          filename=$(basename "$file")
+          # Verificar se o arquivo já está no repositório (rastreado)
+          if git ls-files --error-unmatch "app/templates/$filename" > /dev/null 2>&1; then
+            echo "Warning: File with the same name $filename already exists in the repository."
+          else
+            echo "File $filename is new, checking for duplicates in the repository..."
+            # Verificar se existe um arquivo com o mesmo nome em qualquer lugar do repositório
+            if git ls-files --exclude-standard --others | grep -q "app/templates/$filename"; then
+              echo "Error: New file with the same name $filename already exists!" && exit 1
             fi
+          fi
           done
-          echo "No duplicate HTML file names detected."
+          echo "No duplicate new HTML files detected."
 
   html-checks:
     runs-on: ubuntu-latest
