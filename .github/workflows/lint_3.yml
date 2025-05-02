@@ -37,10 +37,16 @@ jobs:
       run: |
         djlint app/templates/ --check --extension=html,jinja
 
-    - name: Check links in templates
-      run: |
-        linkchecker app/templates/
-
     - name: Static files existence check
       run: python .github/scripts/check_static_files.py
+
+link_checker:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Run LinkChecker
+      run: linkchecker http://localhost:5000
 
