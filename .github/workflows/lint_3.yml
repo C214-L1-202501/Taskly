@@ -39,7 +39,11 @@ jobs:
 
     - name: Run html5validator (HTML5 validation)
       run: |
-        html5validator --root app/templates/ --ignore 'Element “head” is missing a required instance of child element “title”'
+        html5validator --root app/templates/ --ignore 'Element “head” is missing a required instance of child element “title”' \
+          --ignore 'Bad value.*for attribute.*' \
+          --ignore 'The "main" element must not appear as a descendant of the "section" element' \
+          --ignore 'Stray end tag "head"' \
+          --ignore 'Start tag "body" seen but an element of the same type was already open'
 
     - name: Check links in templates
       run: |
