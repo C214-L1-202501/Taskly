@@ -1,0 +1,48 @@
+name: HTML Checks Default
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  html-checks:
+    runs-on: ubuntu-latest
+
+    services:
+      flask:
+        image: tiangolo/uwsgi-nginx-flask:python3.8
+        ports:
+          - 5000:80
+        env:
+          MODULE_NAME: app
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        pip install djlint html5validator linkchecker pa11y requests beautifulsoup4 flask
+
+    - name: Run djlint (HTML/Jinja2 linter)
+      run: |
+        djlint templates/ --check --extension=html,jinja
+
+    - name: Run html5validator (HTML5 validation)
+      run: |
+        html5validator --root templates/ --ignore 'Element “head” is missing a required instance of child element “title”' # Ajuste de regras se necessário
+
+    - name: Check links in templates
+      run: |
+        linkchecker templates/
+
+    - name: Static files existence check
+      run: python .github/scripts/check_static_files.py
+
