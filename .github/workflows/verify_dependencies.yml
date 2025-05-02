@@ -1,4 +1,4 @@
-name: Lint Requirements
+name: Verify Dependencies
 
 on:
   push:
