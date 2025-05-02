@@ -1,0 +1,48 @@
+name: lint_2.yml
+
+on:
+  push:
+    paths:
+      - '**.py'
+  pull_request:
+    paths:
+      - '**.py'
+
+jobs:
+  install-requirements:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install all dependencies (requirements.txt)
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        else
+          echo "File requirements.txt not found!"
+        fi
+
+    - name: Test install
+      run: |
+        pip freeze
+
+    - name: Verify install
+      run: |
+        echo "Testing Import and Package Versions"
+        
+        python -c "import flask; print(f'Flask OK: {flask.__version__}')"
+        python -c "import flask_testing; print(f'Flask-Testing OK: {flask_testing.__version__}')"
+
+    - name: Run tests
+      run: |
+        pytest -v
+        
+        
