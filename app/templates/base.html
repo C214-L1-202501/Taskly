@@ -1,70 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App</title>
+    <title>Taskly</title>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700&display=swap"
+        rel="stylesheet">
     <link
-            href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
     <!-- Axios -->
     <script src="{{ url_for('static', filename='js/axios/axios.min.js') }}"></script>
 
-    <!-- Jquery -->
+    <!-- jQuery -->
     <script src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
 
-    {% block extra_css %} {% endblock %}
+    {% block extra_css %}{% endblock %}
 </head>
 
 <body class="base-body">
 <header>
     <nav>
         <div class="navbar-left-wrap">
-            <a class="navbar-marca" href="/"> <!-- ou talvez a logo -->
+            <a class="navbar-marca" href="/">
                 Taskly
             </a>
         </div>
 
         <div class="navbar-right-wrap">
-            <a class="navbar-sobre-nos" href="/about">Sobre Nós</a>
-            <a class="navbar-login" href="/login">Login</a>
-            <a class="navbar-download" href="/download">Download</a>
-            <a class="navbar-sair" href="/sair">Sair</a>
+            <a class="navbar-tarefas" href="{{ url_for('main.tasks') }}">Tarefas</a>
         </div>
-
     </nav>
 </header>
 
-{% block one %} {% endblock %}
-{% block two %} {% endblock %}
-{% block three %} {% endblock %}
-<footer>
-    <nav>
-        <div class="footer-left-wrap"></div>
-        <a class="footer-marca" href="/"> <!-- ou talvez a logo -->
-            Taskly
-        </a>
+{% block content %}{% endblock %}
 
-        <div class="footer-right-wrap">
-            <a class="footer-sobre-nos" href="/about">Sobre Nós</a>
-            <a class="footer-login" href="/login">Login</a>
-            <a class="footer-download" href="/download">Download</a>
-            <a class="footer-sair" href="/sair">Sair</a>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <a href="/" class="footer-logo">Taskly</a>
+            <p>Organize suas tarefas com praticidade e estilo.</p>
         </div>
 
-    </nav>
-</footer>
-</body>
-{% block extra_js %}{% endblock %}
+        <div class="footer-section">
+            <h4>Links úteis</h4>
+            <ul>
+                <li><a href="{{ url_for('main.tasks') }}">Tarefas</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+            </ul>
+        </div>
 
+        <div class="footer-section">
+            <h4>Redes sociais</h4>
+            <div class="footer-social-icons">
+                <a href="#" aria-label="Instagram"><img src="{{ url_for('static', filename='images/icons/instagram.svg') }}" alt="Instagram"></a>
+                <a href="#" aria-label="Twitter"><img src="{{ url_for('static', filename='images/icons/twitter.svg') }}" alt="Twitter"></a>
+                <a href="#" aria-label="GitHub"><img src="{{ url_for('static', filename='images/icons/github.svg') }}" alt="GitHub"></a>
+            </div>
+            <p style="margin-top: 0.5rem;">© 2025 Taskly</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+{% block extra_js %}{% endblock %}
 </html>
