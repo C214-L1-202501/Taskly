@@ -29,6 +29,7 @@ jobs:
             python -m pytest --html=pytest_report.html
           else
             echo "File requirements.txt not found!"
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
