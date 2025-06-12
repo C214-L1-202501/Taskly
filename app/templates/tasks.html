@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+        <h1>Minhas Tarefas</h1>
+    </div>
+    <button id="new-task-btn">+ Nova Tarefa</button>
+
+    <div class="calendar-wrapper">
+        <div id="task-list" class="task-list">
+            <!-- Tarefas via JS -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="task-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Nova Tarefa</h2>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+
+                <div class="form-group">
+                    <label for="task-name">Nome:</label>
+                    <input type="text" id="task-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-due-date">Data de Entrega:</label>
+                    <input type="date" id="task-due-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-desc">Descrição:</label>
+                    <textarea id="task-desc" required></textarea>
+                </div>
+
+                <button type="submit" class="CTA-button">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-content modal-small">
+            <span class="modal-close-delete">&times;</span>
+            <h2>Excluir Tarefa</h2>
+            <p class="delete-message">Tem certeza que deseja excluir esta tarefa?</p>
+            <div class="modal-buttons">
+                <button id="btn-delete-confirm" class="btn btn-danger">Excluir</button>
+                <button id="btn-delete-cancel" class="btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/tasks.js') }}"></script>
+{% endblock %}
