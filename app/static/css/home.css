@@ -1,0 +1,181 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #2d3436;
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+
+/* Remove espaços verticais grandes da section do carrossel */
+.carousel-section {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin: 1.5rem 0;
+}
+
+main#carousel {
+    grid-row: 1 / 2;
+    grid-column: 1 / 8;
+    width: 100vw;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    --items: 5;
+    --middle: 3;
+    --position: 1;
+    pointer-events: none;
+    border-radius: 20px;
+    position: relative;
+}
+
+div.item {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: #2d3436;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+div.item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+div.item p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Cores pastel por item */
+div.item:nth-of-type(1) { --offset: 1; background-color: #a5f3fc; }
+div.item:nth-of-type(2) { --offset: 2; background-color: #fbcfe8; }
+div.item:nth-of-type(3) { --offset: 3; background-color: #fef3c7; }
+div.item:nth-of-type(4) { --offset: 4; background-color: #d8b4fe; }
+div.item:nth-of-type(5) { --offset: 5; background-color: #bbf7d0; }
+
+div.item {
+    --r: calc(var(--position) - var(--offset));
+    --abs: max(calc(var(--r) * -1), var(--r));
+    transform: rotateY(calc(-10deg * var(--r)))
+               translateX(calc(-300px * var(--r)));
+    z-index: calc((var(--position) - var(--abs)));
+}
+
+.carousel-section input[type="radio"] {
+    display: none;
+}
+
+/* CTA Section */
+.CTA {
+    width: 85vw;
+    height: auto;
+    margin: 100px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4vw;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 2vh;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.CTA-left-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.CTA-title {
+    font-size: 2.8rem;
+    color: #2d3436;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.CTA-description {
+    font-size: 1.3rem;
+    color: #636e72;
+    margin-bottom: 2rem;
+}
+
+.CTA-button {
+    padding: 0.9rem 2rem;
+    font-size: 1.05rem;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+    transition: transform 0.25s ease, background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+.CTA-button:hover {
+    background-color: #019875;
+    transform: scale(1.06);
+}
+
+.CTA-right-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CTA-image {
+    max-width: 90%;
+    height: auto;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.CTA-image:hover {
+    transform: scale(1.05);
+}
+
+/* Box Wrapper */
+.box-wrapper {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.box-wrapper h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.box-wrapper p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+input#carousel1:checked ~ main#carousel { --position: 1; }
+input#carousel2:checked ~ main#carousel { --position: 2; }
+input#carousel3:checked ~ main#carousel { --position: 3; }
+input#carousel4:checked ~ main#carousel { --position: 4; }
+input#carousel5:checked ~ main#carousel { --position: 5; }

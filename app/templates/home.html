@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/CTA.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
-{% block one %}
+{% block content %}
     <div class="CTA box-wrapper">
         <div class="CTA-left-container">
-            <h1 class="CTA-title">Comece a planejar sua vida e organizar seu dia.</h1>
-            <p class="CTA-description">Faça seu planejamento de forma dinâmica e rápida</p>
-            <button class="CTA-button">Começar</button>
+            <h1 class="CTA-title">Gerencie suas tarefas de forma simples e eficiente</h1>
+            <p class="CTA-description">Acompanhe suas pendências e organize seu dia com praticidade.</p>
+            <a class="CTA-button" href="{{ url_for('main.tasks') }}">Tarefas</a>
         </div>
         <div class="CTA-right-container">
-            <img class="CTA-image" src="{{ url_for('static', filename='images/PLACEHOLDER.jpg') }}"
+            <img class="CTA-image" src="{{ url_for('static', filename='images/productivity.jpg') }}"
                  alt="Imagem de Planejamento">
         </div>
     </div>
-{% endblock %}
 
-{% block two %}
     <section class="carousel-section">
         <input type="radio" name="position" id="carousel1" checked/>
         <input type="radio" name="position" id="carousel2"/>
@@ -28,23 +25,35 @@
         <input type="radio" name="position" id="carousel5"/>
 
         <main id="carousel">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+            <div class="item">
+                <h2>📌 Comprar mantimentos</h2>
+                <p>Lista: leite, pão, ovos, arroz, feijão.</p>
+            </div>
+            <div class="item">
+                <h2>📅 Reunião com o time</h2>
+                <p>Reunião semanal na segunda às 9h via Zoom.</p>
+            </div>
+            <div class="item">
+                <h2>✅ Finalizar relatório mensal</h2>
+                <p>Prazo: até sexta-feira, 18h.</p>
+            </div>
+            <div class="item">
+                <h2>🧹 Organizar o escritório</h2>
+                <p>Limpar mesa, organizar cabos e arquivar documentos.</p>
+            </div>
+            <div class="item">
+                <h2>📖 Estudar para prova</h2>
+                <p>Revisar capítulos 3, 4 e 5 de matemática.</p>
+            </div>
         </main>
     </section>
 
-{% endblock %}
-
-{% block three %}
     <div class="box-wrapper">
-        <h1>Bem-vindo!</h1>
-        <p>Organize suas tarefas, compromissos e metas de forma inteligente.</p>
+        <h1>Bem-vindo ao seu Gerenciador de Tarefas</h1>
+        <p>Crie, edite e acompanhe suas atividades diárias em um só lugar.</p>
     </div>
 {% endblock %}
 
 {% block extra_js %}
-<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}
